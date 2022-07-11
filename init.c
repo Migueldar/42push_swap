@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 23:10:57 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/07/10 23:20:14 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/07/11 17:22:32 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	push_half(t_list **a, t_list **b)
 	len = len_list(*a);
 	while (counter < len/2)
 	{
-		p(a, b, 'a');
+		p(a, b, 'b');
 		counter++;
 	}
 }

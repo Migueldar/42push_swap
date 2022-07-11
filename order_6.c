@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 23:21:42 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/07/10 23:47:22 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/07/11 17:22:48 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,10 @@ void	inserter(t_list **a, t_list **b)
 		if (!*a || !((*a)->next) || (((*a)->content > (*b)->content) && ((*b)->content > aux->content)) || 
 			(ordered_list(*a) && ((((*b)->content > (*a)->content) && ((*b)->content > aux->content)) ||
 			(((*b)->content < (*a)->content) && ((*b)->content < aux->content)))))
-			p(b, a, 'b');
+			p(b, a, 'a');
 		else
-			r(a, 'a');
-		//print_lists(*a, *b);
+			rrx(a, 'a');
 	}
 	while (!ordered_list(*a))
-		r(a, 'a');
+		rrx(a, 'a');
 }

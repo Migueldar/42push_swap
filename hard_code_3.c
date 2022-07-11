@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:39:18 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/07/11 00:00:40 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/07/11 17:23:02 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,18 +50,22 @@ void	insert_to_b(t_list **a, t_list **b)
 	int doA;
 	int doB;
 	int	lenA;
+	int	lenB;
 
 	rotations = 0;
 	doA = 0;
 	doB = 0;
 	lenA = 3;
+	lenB = 3;
 	if (len_list(*a) < 3)
 		lenA = len_list(*a);
-	while (rotations < lenA + 3)
+	if (len_list(*b) < 3)
+		lenB = len_list(*b);
+	while (rotations < lenA + lenB)
 	{
-		if (*a && ((doA < 3 && ((*a)->content > (*b)->content)) || doB >= 3))
+		if (*a && ((doA < lenA && ((*a)->content > (*b)->content)) || doB >= 3))
 		{
-			p(a, b, 'a');
+			p(a, b, 'b');
 			doA++;
 		}
 		else
