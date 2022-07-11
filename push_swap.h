@@ -41,5 +41,6 @@ void		insert_to_b(t_list **a, t_list **b);
 int			len_list(t_list *list);
 void		push_half(t_list **a, t_list **b);
 void		order_6(t_list **a, t_list **b);
+void		inserter(t_list **a, t_list **b);
 
 #endif

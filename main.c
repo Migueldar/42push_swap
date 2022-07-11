@@ -32,8 +32,7 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 	b = NULL;
-	print_lists(a, b);
 	push_half(&a, &b);
-	print_lists(a, b);
 	order_6(&a, &b);
+	inserter(&a, &b);
 }

@@ -70,22 +70,6 @@ void	insert_to_b(t_list **a, t_list **b)
 	}
 }
 
-void	inserter(t_list **a, t_list **b)
-{
-	int rotations = 0;
-
-	while (rotations < 6)
-	{
-		if ((*a)->content > (*b)->content)
-		{
-			rotations++;
-			p(b, a, 'b');
-		}
-		else
-			r(a, 'a');
-	}
-}
-
 void	executer(t_list **a, t_list **b)
 {
 	char how_to_a[6];

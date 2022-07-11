@@ -5,7 +5,7 @@ RM = /bin/rm -rf
 OBJ = $(SRC:.c=.o)
 
 $(NAME): $(OBJ)
-	gcc -fsanitize=address -g3 $(OBJ) -o push_swap
+	gcc $(OBJ) -o push_swap
 all: $(NAME)
 clean:
 	$(RM) $(OBJ)
