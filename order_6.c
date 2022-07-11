@@ -17,9 +17,9 @@ void	order_6(t_list **a, t_list **b)
 	while (*a)
 	{
 		executer(a, b);
-		print_lists(*a, *b);
+		//print_lists(*a, *b);
 		insert_to_b(a, b);
-		print_lists(*a, *b);
+		//print_lists(*a, *b);
 	}
 }
 
@@ -44,10 +44,12 @@ void	inserter(t_list **a, t_list **b)
 		while (aux && aux->next)
 			aux = aux->next;
 		if (!*a || !((*a)->next) || (((*a)->content > (*b)->content) && ((*b)->content > aux->content)) || 
-			(ordered_list(*a) && ((((*b)->content > (*a)->content) && ((*b)->content > aux->content)) || (((*b)->content < (*a)->content) && ((*b)->content < aux->content))) ))
+			(ordered_list(*a) && ((((*b)->content > (*a)->content) && ((*b)->content > aux->content)) ||
+			(((*b)->content < (*a)->content) && ((*b)->content < aux->content)))))
 			p(b, a, 'b');
 		else
 			r(a, 'a');
+		//print_lists(*a, *b);
 	}
 	while (!ordered_list(*a))
 		r(a, 'a');

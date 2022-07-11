@@ -43,6 +43,7 @@ void	how_to_3(t_list *list, char *fill)
 	fill[++counter] = 0;
 }
 
+//to insert, adapt big if from inserter
 void	insert_to_b(t_list **a, t_list **b)
 {
 	int rotations;

@@ -33,6 +33,9 @@ int	main(int argc, char **argv)
 	}
 	b = NULL;
 	push_half(&a, &b);
+	//print_lists(a, b);
 	order_6(&a, &b);
+	//print_lists(a, b);
 	inserter(&a, &b);
+	//print_lists(a, b);
 }

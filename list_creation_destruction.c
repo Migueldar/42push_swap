@@ -14,6 +14,7 @@
 
 void	print_lists(t_list *a, t_list *b)
 {
+	//remove
 	while (a || b)
 	{
 		if (a)
@@ -31,6 +32,7 @@ void	print_lists(t_list *a, t_list *b)
 		printf("\n");
 	}
 	printf("\n");
+	fflush(NULL);
 }
 
 //0 exit if malloc wrong, 42 else
