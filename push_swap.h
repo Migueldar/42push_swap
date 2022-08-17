@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 18:52:12 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/07/10 23:25:40 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/08/17 05:11:16 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,14 @@ t_list		*create_list(char **argv);
 void		print_lists(t_list *a, t_list *b);
 void		how_to_3(t_list *list, char *fill);
 void		executer(t_list **a, t_list **b);
-void		insert_to_b(t_list **a, t_list **b);
+void		insert_to_x(t_list **f, t_list **t, int fold, char cto);
 int			len_list(t_list *list);
 void		push_half(t_list **a, t_list **b);
-void		order_6(t_list **a, t_list **b);
+void		order_n(t_list **a, t_list **b, int folds);
 void		inserter(t_list **a, t_list **b);
+int			aprox(double n);
+double		ft_ln(double x);
+int			round_up(double n);
+double		ft_pow(double x, unsigned int pow);
 
 #endif

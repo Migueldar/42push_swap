@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:39:18 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/07/11 17:23:02 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/08/17 05:05:49 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,39 +43,38 @@ void	how_to_3(t_list *list, char *fill)
 	fill[++counter] = 0;
 }
 
-//to insert, adapt big if from inserter
-void	insert_to_b(t_list **a, t_list **b)
+void	insert_to_x(t_list **f, t_list **t, int fold, char cto)
 {
 	int rotations;
-	int doA;
-	int doB;
-	int	lenA;
-	int	lenB;
+	int doF;
+	int doT;
+	int	lenF;
+	int	lenT;
 
 	rotations = 0;
-	doA = 0;
-	doB = 0;
-	lenA = 3;
-	lenB = 3;
-	if (len_list(*a) < 3)
-		lenA = len_list(*a);
-	if (len_list(*b) < 3)
-		lenB = len_list(*b);
-	while (rotations < lenA + lenB)
+	doF = 0;
+	doT = 0;
+	lenF = 3 * (int) ft_pow(2, fold);
+	lenT = 3 * (int) ft_pow(2, fold);
+	if (len_list(*f) < 3 * (int) ft_pow(2, fold))
+		lenF = len_list(*f);
+	if (len_list(*t) < 3 * (int) ft_pow(2, fold))
+		lenT = len_list(*t);
+	while (rotations < lenF + lenT)
 	{
-		if (*a && ((doA < lenA && ((*a)->content > (*b)->content)) || doB >= 3))
+		if (*f && ((doF < lenF && ((*f)->content > (*t)->content)) || doT >= 3 * (int) ft_pow(2, fold)))
 		{
-			p(a, b, 'b');
-			doA++;
+			p(f, t, cto);
+			doF++;
 		}
 		else
-			doB++;
-		r(b, 'b');
+			doT++;
+		r(t, cto);
 		rotations++;
 	}
 }
 
-void	executer(t_list **a, t_list **b)
+void	executer(t_list **f, t_list **t)
 {
 	char how_to_a[6];
 	char how_to_b[6];
@@ -84,18 +83,18 @@ void	executer(t_list **a, t_list **b)
 
 	counter1 = 0;
 	counter2 = 0;
-	how_to_3(*a, how_to_a);
-	how_to_3(*b, how_to_b);
+	how_to_3(*f, how_to_a);
+	how_to_3(*t, how_to_b);
 	while (how_to_a[counter1] || how_to_b[counter2])
 	{
 		if (how_to_a[counter1] == how_to_b[counter2])
 		{
 			if (how_to_a[counter1] == 's')
-				ss(*a, *b);
+				ss(*f, *t);
 			else if (how_to_a[counter1] == 'r')
-				rr(a, b);
+				rr(f, t);
 			else if (how_to_a[counter1] == '4')
-				rrr(a, b);
+				rrr(f, t);
 			counter1++;
 			counter2++;
 		}
@@ -104,21 +103,21 @@ void	executer(t_list **a, t_list **b)
 			if (strlen(how_to_a) > strlen(how_to_b))
 			{
 				if (how_to_a[counter1] == 's')
-					s(*a, 'a');
+					s(*f, 'f');
 				else if (how_to_a[counter1] == 'r')
-					r(a, 'a');
+					r(f, 'f');
 				else if (how_to_a[counter1] == '4')
-					rrx(a, 'a');
+					rrx(f, 'f');
 				counter1++;
 			}
 			else
 			{
 				if (how_to_b[counter2] == 's')
-					s(*b, 'b');
+					s(*t, 't');
 				else if (how_to_b[counter2] == 'r')
-					r(b, 'b');
+					r(t, 't');
 				else if (how_to_b[counter2] == '4')
-					rrx(b, 'b');
+					rrx(t, 't');
 				counter2++;
 			}	
 		}
