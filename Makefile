@@ -1,6 +1,6 @@
 NAME = push_swap
-SRC = main.c list_operations1.c list_operations2.c list_creation_destruction.c hard_code_3.c init.c utils.c order_6.c
-CFLAGS = -Wall -Wextra -Werror
+SRC = main.c list_operations1.c list_operations2.c list_creation_destruction.c hard_code_3.c init.c utils.c order_n.c
+CFLAGS = -Wall -Wextra -Werror -g3
 RM = /bin/rm -rf
 OBJ = $(SRC:.c=.o)
 

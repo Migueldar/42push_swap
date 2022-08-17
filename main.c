@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 23:15:19 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/08/17 05:14:09 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/08/17 22:16:40 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	main(int argc, char **argv)
 	folds = n_of_folds(len_list(a));
 	b = NULL;
 	push_half(&a, &b);
-	// //print_lists(a, b);
+	// print_lists(a, b);
 	order_n(&a, &b, folds);
 	// print_lists(a, b);
-	// inserter(&a, &b);
-	// print_lists(a, b);
+	inserter(&a, &b);
+	//print_lists(a, b);
 }

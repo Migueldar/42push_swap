@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   order_6.c                                          :+:      :+:    :+:   */
+/*   order_n.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 23:21:42 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/08/17 05:20:14 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/08/17 22:16:10 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,24 +17,54 @@ void	order_n(t_list **a, t_list **b, int folds)
 	int	counter;
 	int	len_l;
 	int	current_fold;
+	int	remainder;
+	int	lens[2];
 
-	len_l = len_list(*a);
+	len_l = len_list(*a) + len_list(*b);
 	current_fold = -1;
 	while (++current_fold <= folds)
 	{
 		counter = 0;
-		while (counter < round_up(len_l / (3.0 * ft_pow(2, current_fold))))
+		lens[0] = 3 * ft_pow(2, current_fold);
+		lens[1] = 3 * ft_pow(2, current_fold);
+		while (counter < (int) (len_l / (6 * ft_pow(2, current_fold))))
 		{
 			if (current_fold == 0)
 				executer(a, b);
-			if (counter % 2 == 0)
-				insert_to_x(a, b, current_fold, 'b');
+			if (counter % 2 == 1 || current_fold == folds)
+				insert_to_x(a, b, lens, 'b');
 			else 
-				insert_to_x(b, a, current_fold, 'a');
+				insert_to_x(b, a, lens, 'a');
+			//printf("C: %d\n", counter);
+			//print_lists(*a, *b);
 			counter++;
 		}
-		printf("Fold: %d\n", current_fold);
-		print_lists(*a, *b);
+		remainder = len_l % (int) (6 * ft_pow(2, current_fold));
+		//printf("Remainder: %d \n", remainder);
+		if (current_fold == 0) 
+		{
+			lens[0] = round_up(remainder / 2.0);
+			lens[1] = remainder / 2;
+			executer(a, b);
+		}
+		else if (remainder > (3 * ft_pow(2, current_fold)))
+			lens[1] = remainder - 3 * ft_pow(2, current_fold);
+		else
+		{
+			lens[0] = remainder;
+			lens[1] = 0;
+		}
+		if (counter % 2 == 1 || current_fold == folds)
+			insert_to_x(a, b, lens, 'b');
+		else {
+			int aux;
+			aux = lens[0];
+			lens[0] = lens[1];
+			lens[1] = aux;
+			insert_to_x(b, a, lens, 'a');
+		}
+		//printf("Fold: %d\n", current_fold);
+		//print_lists(*a, *b);
 	}
 }
 

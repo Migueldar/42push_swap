@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:39:18 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/08/17 05:05:49 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/08/17 21:28:24 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	how_to_3(t_list *list, char *fill)
 	fill[++counter] = 0;
 }
 
-void	insert_to_x(t_list **f, t_list **t, int fold, char cto)
+void	insert_to_x(t_list **f, t_list **t, int lens[2], char cto)
 {
 	int rotations;
 	int doF;
@@ -54,15 +54,11 @@ void	insert_to_x(t_list **f, t_list **t, int fold, char cto)
 	rotations = 0;
 	doF = 0;
 	doT = 0;
-	lenF = 3 * (int) ft_pow(2, fold);
-	lenT = 3 * (int) ft_pow(2, fold);
-	if (len_list(*f) < 3 * (int) ft_pow(2, fold))
-		lenF = len_list(*f);
-	if (len_list(*t) < 3 * (int) ft_pow(2, fold))
-		lenT = len_list(*t);
+	lenF = lens[0];
+	lenT = lens[1];
 	while (rotations < lenF + lenT)
 	{
-		if (*f && ((doF < lenF && ((*f)->content > (*t)->content)) || doT >= 3 * (int) ft_pow(2, fold)))
+		if ((doF < lenF && ((*f)->content > (*t)->content)) || doT >= lenT)
 		{
 			p(f, t, cto);
 			doF++;
