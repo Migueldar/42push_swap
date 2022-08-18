@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 23:21:42 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/08/17 22:16:10 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/08/18 02:41:57 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,23 @@ void	order_n(t_list **a, t_list **b, int folds)
 		while (counter < (int) (len_l / (6 * ft_pow(2, current_fold))))
 		{
 			if (current_fold == 0)
-				executer(a, b);
+				executer(a, b, lens);
 			if (counter % 2 == 1 || current_fold == folds)
 				insert_to_x(a, b, lens, 'b');
 			else 
 				insert_to_x(b, a, lens, 'a');
-			//printf("C: %d\n", counter);
-			//print_lists(*a, *b);
+			// printf("C: %d\n", counter);
+			// print_lists(*a, *b);
 			counter++;
 		}
 		remainder = len_l % (int) (6 * ft_pow(2, current_fold));
 		//printf("Remainder: %d \n", remainder);
+		//print_lists(*a, *b);
 		if (current_fold == 0) 
 		{
 			lens[0] = round_up(remainder / 2.0);
 			lens[1] = remainder / 2;
-			executer(a, b);
+			executer(a, b, lens);
 		}
 		else if (remainder > (3 * ft_pow(2, current_fold)))
 			lens[1] = remainder - 3 * ft_pow(2, current_fold);
@@ -56,15 +57,16 @@ void	order_n(t_list **a, t_list **b, int folds)
 		}
 		if (counter % 2 == 1 || current_fold == folds)
 			insert_to_x(a, b, lens, 'b');
-		else {
+		else 
+		{
 			int aux;
 			aux = lens[0];
 			lens[0] = lens[1];
 			lens[1] = aux;
 			insert_to_x(b, a, lens, 'a');
 		}
-		//printf("Fold: %d\n", current_fold);
-		//print_lists(*a, *b);
+		// printf("Fold: %d\n", current_fold);
+		// print_lists(*a, *b);
 	}
 }
 

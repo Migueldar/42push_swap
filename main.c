@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 23:15:19 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/08/17 22:16:40 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/08/18 02:44:37 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,9 @@ void	leaks()
 
 //takes number of elements in a list, returns number of folds
 //that should be perform to get best optimization
+//got the number calculating the der
 int	n_of_folds(int n) {
-	double	ln2;
-
-	ln2 = 0.693147;
-	return (aprox(ft_ln((n-1.0)*ln2/18.0)/ln2));
+	return (aprox(1.4427 * ft_ln(0.0601123 * (0.72923 * n))));
 }
 
 //meter split caso "1 2 3 4", contemplar caso de ya ordenados
@@ -47,5 +45,5 @@ int	main(int argc, char **argv)
 	order_n(&a, &b, folds);
 	// print_lists(a, b);
 	inserter(&a, &b);
-	//print_lists(a, b);
+	// print_lists(a, b);
 }
