@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:39:18 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/08/18 02:47:11 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/08/18 03:13:16 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ static void	how_to_3(t_list *list, char *fill, int len)
 		l[2] = list->next->next->content;
 	if ((l[1] > l[0]))
 		fill[++counter] = 's';
-	if (len == 3 && !(l[1] > l[0] && l[0] > l[2]) && !(l[0] > l[1] && l[1] > l[2]))
+	if (len == 3 && !(l[1] > l[0] && l[0] > l[2])
+		&& !(l[0] > l[1] && l[1] > l[2]))
 	{
 		fill[++counter] = 'r';
 		fill[++counter] = 's';
@@ -41,26 +42,26 @@ static void	how_to_3(t_list *list, char *fill, int len)
 
 void	insert_to_x(t_list **f, t_list **t, int lens[2], char cto)
 {
-	int rotations;
-	int doF;
-	int doT;
-	int	lenF;
-	int	lenT;
+	int	rotations;
+	int	do_f;
+	int	do_t;
+	int	len_f;
+	int	len_t;
 
 	rotations = 0;
-	doF = 0;
-	doT = 0;
-	lenF = lens[0];
-	lenT = lens[1];
-	while (rotations < lenF + lenT)
+	do_f = 0;
+	do_t = 0;
+	len_f = lens[0];
+	len_t = lens[1];
+	while (rotations < len_f + len_t)
 	{
-		if ((doF < lenF && ((*f)->content > (*t)->content)) || doT >= lenT)
+		if ((do_f < len_f && ((*f)->content > (*t)->content)) || do_t >= len_t)
 		{
 			p(f, t, cto);
-			doF++;
+			do_f++;
 		}
 		else
-			doT++;
+			do_t++;
 		r(t, cto);
 		rotations++;
 	}
@@ -68,10 +69,10 @@ void	insert_to_x(t_list **f, t_list **t, int lens[2], char cto)
 
 void	executer(t_list **a, t_list **b, int lens[2])
 {
-	char how_to_a[6];
-	char how_to_b[6];
-	int counter1;
-	int counter2;
+	char	how_to_a[6];
+	char	how_to_b[6];
+	int		counter1;
+	int		counter2;
 
 	counter1 = 0;
 	counter2 = 0;
