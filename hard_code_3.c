@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:39:18 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/08/18 03:13:16 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/08/18 23:11:07 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ void	executer(t_list **a, t_list **b, int lens[2])
 	counter2 = 0;
 	how_to_3(*a, how_to_a, lens[0]);
 	how_to_3(*b, how_to_b, lens[1]);
+	//printf("a: %s, b: %s\n", how_to_a, how_to_b);
 	while (how_to_a[counter1] || how_to_b[counter2])
 	{
 		if (how_to_a[counter1] == how_to_b[counter2])
@@ -93,7 +94,7 @@ void	executer(t_list **a, t_list **b, int lens[2])
 		}
 		else
 		{
-			if (strlen(&how_to_a[counter1]) > strlen(&how_to_b[counter2]))
+			if (strlen(&how_to_a[counter1]) > strlen(&how_to_b[counter2]) || ((strlen(&how_to_a[counter1]) == strlen(&how_to_b[counter2])) && (how_to_a[counter1] == 's')))
 			{
 				if (how_to_a[counter1] == 's')
 					s(*a, 'a');

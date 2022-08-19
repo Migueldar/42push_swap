@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 23:15:19 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/08/18 03:18:36 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/08/19 05:18:52 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,12 @@ int	n_of_folds(int n)
 //TODO
 //meter split caso "1 2 3 4", contemplar caso de ya ordenados
 //hardcode 3, hardcore 5
+//change strlen for ft_strlen
+//comprobar formula que saca numero de folds para numeros muy pequeños
+//cambiar formula de n_folds (ya que formula grande ha cambiado)
+//bloques de 4
+//implementar reverse rotation en el primer paso de cada fold (ahorra 8 + 16 + ... movs)
+//buscar optimizaciones para el inserter de 4, igual que las busque para el de 3
 int	main(int argc, char **argv)
 {
 	t_list	*a;
@@ -46,7 +52,7 @@ int	main(int argc, char **argv)
 	push_half(&a, &b);
 	// print_lists(a, b);
 	order_n(&a, &b, folds);
-	// print_lists(a, b);
+	print_lists(a, b);
 	inserter(&a, &b);
 	// print_lists(a, b);
 }
