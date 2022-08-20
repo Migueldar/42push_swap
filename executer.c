@@ -12,34 +12,6 @@
 
 #include "push_swap.h"
 
-//l array son los primeros elementos de la lista
-//r = r, s = s, rr = 4
-static void	how_to_3(t_list *list, char *fill, int len)
-{
-	int	l[3];
-	int	counter;
-
-	counter = -1;
-	if (len <= 1)
-		return (fill[0] = 0, (void) 42);
-	l[0] = list->content;
-	l[1] = list->next->content;
-	if (len == 3)
-		l[2] = list->next->next->content;
-	if ((l[1] > l[0]))
-		fill[++counter] = 's';
-	if (len == 3 && !(l[1] > l[0] && l[0] > l[2])
-		&& !(l[0] > l[1] && l[1] > l[2]))
-	{
-		fill[++counter] = 'r';
-		fill[++counter] = 's';
-		fill[++counter] = '4';
-		if ((l[2] > l[0] && l[0] > l[1]) || (l[2] > l[1] && l[1] > l[0]))
-			fill[++counter] = 's';
-	}
-	fill[++counter] = 0;
-}
-
 void	insert_to_x(t_list **f, t_list **t, int lens[2], char cto)
 {
 	int	rotations;
@@ -67,53 +39,102 @@ void	insert_to_x(t_list **f, t_list **t, int lens[2], char cto)
 	}
 }
 
+//l array son los primeros elementos de la lista
+//r = r, s = s, rr = 4
+static char*	how_to_1_2_3(t_list *list, int len)
+{
+	int	l[3];
+
+	if (len <= 1)
+		return ft_strdup("");
+	l[0] = list->content;
+	l[1] = list->next->content;
+	if (len == 2)
+	{
+		if (l[0] > l[1])
+			return ft_strdup("");
+		return ft_strdup("s");
+	}
+	l[2] = list->next->next->content;
+	if (l[0] < l[1] && l[1] < l[2])
+		return ft_strdup("srs4s");
+	if (l[0] < l[2] && l[2] < l[1])
+		return ft_strdup("srs4");
+	if (l[1] < l[0] && l[0] < l[2])
+		return ft_strdup("rs4s");
+	if (l[2] < l[0] && l[0] < l[1])
+		return ft_strdup("s");
+	if (l[1] < l[2] && l[2] < l[0])
+		return ft_strdup("rs4");
+	else
+		return ft_strdup("");
+}
+
+// static void	how_to_4_a(t_list *list, int len)
+// {
+	
+// }
+
+// static void	how_to_4_b(t_list *list, int len)
+// {
+	
+// }
+
+static char*	how_to(t_list *list, int len)
+{
+	return (how_to_1_2_3(list, len));
+}
+
 void	executer(t_list **a, t_list **b, int lens[2])
 {
-	char	how_to_a[6];
-	char	how_to_b[6];
-	int		counter1;
-	int		counter2;
+	char	*how_to_a;
+	char	*how_to_b;
+	char	*copy1;
+	char	*copy2;
 
-	counter1 = 0;
-	counter2 = 0;
-	how_to_3(*a, how_to_a, lens[0]);
-	how_to_3(*b, how_to_b, lens[1]);
+	how_to_a = how_to(*a, lens[0]);
+	how_to_b = how_to(*b, lens[1]);
+	copy1 = how_to_a;
+	copy2 = how_to_b;
 	//printf("a: %s, b: %s\n", how_to_a, how_to_b);
-	while (how_to_a[counter1] || how_to_b[counter2])
+	//fflush(NULL);
+	while (*how_to_a || *how_to_b)
 	{
-		if (how_to_a[counter1] == how_to_b[counter2])
+		if (*how_to_a == *how_to_b)
 		{
-			if (how_to_a[counter1] == 's')
+			if (*how_to_a == 's')
 				ss(*a, *b);
-			else if (how_to_a[counter1] == 'r')
+			else if (*how_to_a == 'r')
 				rr(a, b);
-			else if (how_to_a[counter1] == '4')
+			else if (*how_to_a == '4')
 				rrr(a, b);
-			counter1++;
-			counter2++;
+			how_to_a++;
+			how_to_b++;
 		}
 		else
 		{
-			if (strlen(&how_to_a[counter1]) > strlen(&how_to_b[counter2]) || ((strlen(&how_to_a[counter1]) == strlen(&how_to_b[counter2])) && (how_to_a[counter1] == 's')))
+			if (ft_strlen(how_to_a) > ft_strlen(how_to_b))
 			{
-				if (how_to_a[counter1] == 's')
+				if (*how_to_a == 's')
 					s(*a, 'a');
-				else if (how_to_a[counter1] == 'r')
+				else if (*how_to_a == 'r')
 					r(a, 'a');
-				else if (how_to_a[counter1] == '4')
+				else if (*how_to_a == '4')
 					rrx(a, 'a');
-				counter1++;
+				how_to_a++;
 			}
 			else
 			{
-				if (how_to_b[counter2] == 's')
+				if (*how_to_b == 's')
 					s(*b, 'b');
-				else if (how_to_b[counter2] == 'r')
+				else if (*how_to_b == 'r')
 					r(b, 'b');
-				else if (how_to_b[counter2] == '4')
+				else if (*how_to_b == '4')
 					rrx(b, 'b');
-				counter2++;
+				how_to_b++;
 			}	
 		}
 	}
+	free(copy1);
+	free(copy2);
 }

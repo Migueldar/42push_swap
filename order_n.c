@@ -35,7 +35,7 @@ void	order_n(t_list **a, t_list **b, int folds)
 				insert_to_x(a, b, lens, 'b');
 			else
 				insert_to_x(b, a, lens, 'a');
-			// printf("C: %d\n", counter);
+			// printf("aC: %d\n", counter);
 			// print_lists(*a, *b);
 			counter++;
 		}

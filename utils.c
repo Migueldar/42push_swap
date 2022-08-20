@@ -45,7 +45,7 @@ double	ft_pow(double x, unsigned int pow)
 	return (res);
 }
 
-//this implemetation onlly supports positive results, 
+//this implemetation only supports positive results, 
 //will return 0 for negatives
 double	ft_ln(double x)
 {
@@ -76,4 +76,29 @@ int	round_up(double n)
 	if (n == (float)(int) n)
 		return (n);
 	return (n + 1);
+}
+
+size_t	ft_strlen(const char *str)
+{
+	unsigned long	counter;
+
+	counter = 0;
+	while (str[counter] != 0)
+		counter++;
+	return (counter);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	char	*ret;
+	char	*ret_cpy;
+
+	ret = malloc(ft_strlen(s1) + 1);
+	if (ret == NULL)
+		return (ret);
+	ret_cpy = ret;
+	while (*s1 != 0)
+		*(ret++) = *(s1++);
+	*ret = 0;
+	return (ret_cpy);
 }

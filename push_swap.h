@@ -16,8 +16,6 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
-//rm 
-#include <string.h>
 
 typedef struct s_list
 {
@@ -45,5 +43,7 @@ int			aprox(double n);
 double		ft_ln(double x);
 int			round_up(double n);
 double		ft_pow(double x, unsigned int pow);
+size_t		ft_strlen(const char *str);
+char		*ft_strdup(const char *s1);
 
 #endif

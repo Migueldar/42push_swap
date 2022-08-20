@@ -28,7 +28,6 @@ int	n_of_folds(int n)
 //TODO
 //meter split caso "1 2 3 4", contemplar caso de ya ordenados
 //hardcode 3, hardcore 5
-//change strlen for ft_strlen
 //comprobar formula que saca numero de folds para numeros muy pequeños
 //cambiar formula de n_folds (ya que formula grande ha cambiado)
 //bloques de 4
@@ -52,7 +51,7 @@ int	main(int argc, char **argv)
 	push_half(&a, &b);
 	// print_lists(a, b);
 	order_n(&a, &b, folds);
-	print_lists(a, b);
+	//print_lists(a, b);
 	inserter(&a, &b);
 	// print_lists(a, b);
 }
