@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 23:21:42 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/08/19 04:52:14 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/08/20 23:20:45 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,12 @@ void	order_n(t_list **a, t_list **b, int folds)
 	while (++current_fold <= folds)
 	{
 		counter = 0;
-		lens[0] = 3 * ft_pow(2, current_fold);
-		lens[1] = 3 * ft_pow(2, current_fold);
-		while (counter < (int)(len_l / (6 * ft_pow(2, current_fold))))
+		lens[0] = 4 * ft_pow(2, current_fold);
+		lens[1] = 4 * ft_pow(2, current_fold);
+		while (counter < (int)(len_l / (8 * ft_pow(2, current_fold))))
 		{
+			// printf("bC: %d\n", counter);
+			// print_lists(*a, *b);
 			if (current_fold == 0)
 				executer(a, b, lens);
 			if (counter % 2 == 1 || current_fold == folds)
@@ -39,7 +41,7 @@ void	order_n(t_list **a, t_list **b, int folds)
 			// print_lists(*a, *b);
 			counter++;
 		}
-		remainder = len_l % (int)(6 * ft_pow(2, current_fold));
+		remainder = len_l % (int)(8 * ft_pow(2, current_fold));
 		//printf("Remainder: %d \n", remainder);
 		//print_lists(*a, *b);
 		if (current_fold == 0)
@@ -48,8 +50,8 @@ void	order_n(t_list **a, t_list **b, int folds)
 			lens[1] = remainder / 2;
 			executer(a, b, lens);
 		}
-		else if (remainder > (3 * ft_pow(2, current_fold)))
-			lens[1] = remainder - 3 * ft_pow(2, current_fold);
+		else if (remainder > (4 * ft_pow(2, current_fold)))
+			lens[1] = remainder - 4 * ft_pow(2, current_fold);
 		else
 		{
 			lens[0] = remainder;
@@ -100,4 +102,32 @@ void	inserter(t_list **a, t_list **b)
 	}
 	while (!ordered_list(*a))
 		rrx(a, 'a');
+}
+
+
+void	insert_to_x(t_list **f, t_list **t, int lens[2], char cto)
+{
+	int	rotations;
+	int	do_f;
+	int	do_t;
+	int	len_f;
+	int	len_t;
+
+	rotations = 0;
+	do_f = 0;
+	do_t = 0;
+	len_f = lens[0];
+	len_t = lens[1];
+	while (rotations < len_f + len_t)
+	{
+		if ((do_f < len_f && ((*f)->content > (*t)->content)) || do_t >= len_t)
+		{
+			p(f, t, cto);
+			do_f++;
+		}
+		else
+			do_t++;
+		r(t, cto);
+		rotations++;
+	}
 }
