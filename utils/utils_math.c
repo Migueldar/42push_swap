@@ -1,36 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils_math.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/10 20:30:10 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/08/21 01:05:54 by mde-arpe         ###   ########.fr       */
+/*   Created: 2022/08/21 20:48:42 by mde-arpe          #+#    #+#             */
+/*   Updated: 2022/08/21 21:11:44 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "../push_swap.h"
 
-int	len_list(t_list *list)
-{
-	int	counter;
-
-	counter = 0;
-	while (list)
-	{
-		list = list->next;
-		counter++;
-	}
-	return (counter);
-}
-
-int	aprox_or_pos(double n)
+int	aprox_or_zero(double n)
 {
 	int	floor;
 
 	if (n <= 0.0)
-		return 0;
+		return (0);
 	floor = (int) n;
 	if ((double) floor + 0.5 > n)
 		return (floor);
@@ -78,41 +65,4 @@ int	round_up(double n)
 	if (n == (float)(int) n)
 		return (n);
 	return (n + 1);
-}
-
-size_t	ft_strlen(const char *str)
-{
-	unsigned long	counter;
-
-	counter = 0;
-	while (str[counter] != 0)
-		counter++;
-	return (counter);
-}
-
-char	*ft_strdup(const char *s1)
-{
-	char	*ret;
-	char	*ret_cpy;
-
-	ret = malloc(ft_strlen(s1) + 1);
-	if (ret == NULL)
-		return (ret);
-	ret_cpy = ret;
-	while (*s1 != 0)
-		*(ret++) = *(s1++);
-	*ret = 0;
-	return (ret_cpy);
-}
-
-
-int	ordered_list(t_list *a)
-{
-	while (a && a->next)
-	{
-		if (a->content > a->next->content)
-			return (0);
-		a = a->next;
-	}
-	return (1);
 }

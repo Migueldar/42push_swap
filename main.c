@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 23:15:19 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/08/21 01:36:01 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/08/21 21:18:51 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	leaks()
 //got the number calculating the derivative
 int	n_of_folds(int n) 
 {
-	return (aprox_or_pos((ft_ln((ft_ln(2) * n) / 3) - 3 * ft_ln(2)) / ft_ln(2)));
+	return (aprox_or_zero((ft_ln((ft_ln(2) * n) / 3) - 3 * ft_ln(2)) / ft_ln(2)));
 }
 
 //TODO
-//meter split caso "1 2 3 4"
+//maybe redo split to accept every type of space
 //hardcore 5
 //comprobar formula que saca numero de folds para numeros muy pequeños
 //implementar reverse rotation en el primer paso de cada fold (ahorra 8 + 16 + ... movs)
@@ -40,7 +40,7 @@ int	main(int argc, char **argv)
 	int		folds;
 	int		len;
 
-	a = create_list(argv);
+	a = create_list(argc, argv, 0);
 	if (!a)
 		return (write(2, "Error\n", 6), 1);
 	b = NULL;
