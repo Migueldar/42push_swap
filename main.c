@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 23:15:19 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/08/20 23:56:51 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/08/21 01:36:01 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ void	leaks()
 //got the number calculating the derivative
 int	n_of_folds(int n) 
 {
-	return (aprox((ft_ln((ft_ln(2) * n) / 3) - 3 * ft_ln(2)) / ft_ln(2)));
+	return (aprox_or_pos((ft_ln((ft_ln(2) * n) / 3) - 3 * ft_ln(2)) / ft_ln(2)));
 }
 
 //TODO
-//meter split caso "1 2 3 4", contemplar caso de ya ordenados
-//hardcode 3, hardcore 5
+//meter split caso "1 2 3 4"
+//hardcore 5
 //comprobar formula que saca numero de folds para numeros muy pequeños
 //implementar reverse rotation en el primer paso de cada fold (ahorra 8 + 16 + ... movs)
 //buscar optimizaciones para el inserter de 4, igual que las busque para el de 3 (already did, but surely could be better, i will improve if needed)
@@ -38,21 +38,26 @@ int	main(int argc, char **argv)
 	t_list	*a;
 	t_list	*b;
 	int		folds;
+	int		len;
 
-	(void) argc;
 	a = create_list(argv);
 	if (!a)
-	{
-		write(2, "Error\n", 6);
-		return (1);
-	}
+		return (write(2, "Error\n", 6), 1);
 	b = NULL;
-	folds = n_of_folds(len_list(a));
-	push_half(&a, &b);
-	// print_lists(a, b);
-	order_n(&a, &b, folds);
-	// print_lists(a, b);
-	inserter(&a, &b);
-	// print_lists(a, b);
+	len = len_list(a);
+	folds = n_of_folds(len);
+	if (ordered_list(a))
+		(void) argc;
+	else if (len <= 3)
+		hardcode_3(&a, len);
+	else if (len == 5)
+		hardcode_5(&a, &b);
+	else 
+	{
+		push_half(&a, &b);
+		order_n(&a, &b, folds);
+		inserter(&a, &b);
+	}
+	//print_lists(a, b);
 	free_list(a);
 }

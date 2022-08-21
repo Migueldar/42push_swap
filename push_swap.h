@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 18:52:12 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/08/17 22:39:59 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/08/21 01:51:31 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,15 @@ int			len_list(t_list *list);
 void		push_half(t_list **a, t_list **b);
 void		order_n(t_list **a, t_list **b, int folds);
 void		inserter(t_list **a, t_list **b);
-int			aprox(double n);
+int			aprox_or_pos(double n);
 double		ft_ln(double x);
 int			round_up(double n);
 double		ft_pow(double x, unsigned int pow);
 size_t		ft_strlen(const char *str);
 char		*ft_strdup(const char *s1);
+int			ordered_list(t_list *a);
+void		hardcode_3(t_list **a, int len);
+void		hardcode_5(t_list **a, t_list **b);
+char		**ft_split(char const *s, char c);
 
 #endif

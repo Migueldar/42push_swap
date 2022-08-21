@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 00:24:12 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/08/17 23:23:26 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/08/21 01:30:14 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	print_lists(t_list *a, t_list *b)
 		}
 		printf("\n");
 	}
-	printf("\n");
 	fflush(NULL);
 }
 

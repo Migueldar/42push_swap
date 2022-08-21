@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 20:30:10 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/08/17 04:57:18 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/08/21 01:05:54 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,12 @@ int	len_list(t_list *list)
 	return (counter);
 }
 
-int	aprox(double n)
+int	aprox_or_pos(double n)
 {
 	int	floor;
 
+	if (n <= 0.0)
+		return 0;
 	floor = (int) n;
 	if ((double) floor + 0.5 > n)
 		return (floor);
@@ -101,4 +103,16 @@ char	*ft_strdup(const char *s1)
 		*(ret++) = *(s1++);
 	*ret = 0;
 	return (ret_cpy);
+}
+
+
+int	ordered_list(t_list *a)
+{
+	while (a && a->next)
+	{
+		if (a->content > a->next->content)
+			return (0);
+		a = a->next;
+	}
+	return (1);
 }
