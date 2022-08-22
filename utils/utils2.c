@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 21:10:09 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/08/21 21:19:31 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/08/21 23:54:28 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,13 @@ void	free_double_ptr(char **ptr)
 		}
 		free(ptr);
 	}
+}
+
+//opp 0 for <
+//else for >
+int op(int a, int b, int opp)
+{
+	if (opp == 0)
+		return (a < b);
+	return (a > b);
 }

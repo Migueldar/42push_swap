@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 20:55:28 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/08/21 21:19:42 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/08/21 23:12:43 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,13 @@ int	add_elem_back(t_list **first, int n)
 		aux = aux->next;
 	aux->next = new;
 	return (42);
+}
+
+int	last_elem(t_list *lst)
+{
+	while (lst && lst->next)
+		lst = lst->next;
+	return lst->content;
 }
 
 //remove

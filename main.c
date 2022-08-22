@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 23:15:19 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/08/21 21:18:51 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/08/22 02:21:37 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	leaks()
 }
 
 //takes number of elements in a list, returns number of folds
-//that should be perform to get best optimization
+//that should be performed to get best optimization
 //got the number calculating the derivative
 int	n_of_folds(int n) 
 {
@@ -28,7 +28,6 @@ int	n_of_folds(int n)
 //TODO
 //maybe redo split to accept every type of space
 //hardcore 5
-//comprobar formula que saca numero de folds para numeros muy pequeños
 //implementar reverse rotation en el primer paso de cada fold (ahorra 8 + 16 + ... movs)
 //buscar optimizaciones para el inserter de 4, igual que las busque para el de 3 (already did, but surely could be better, i will improve if needed)
 //maybe force 100 to 1 fold(6 less moves)
@@ -56,8 +55,8 @@ int	main(int argc, char **argv)
 	{
 		push_half(&a, &b);
 		order_n(&a, &b, folds);
+		//print_lists(a, b);
 		inserter(&a, &b);
 	}
-	//print_lists(a, b);
 	free_list(a);
 }
