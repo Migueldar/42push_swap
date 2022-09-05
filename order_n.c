@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 23:21:42 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/08/22 04:23:22 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/09/05 03:28:31 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ void	insert_middle(t_list **f, t_list **t, int lens[2], char cto)
 	len_f = lens[0];
 	len_t = lens[1];
 	opp = 1;
-	while (++counter < len_f)
-		rrx(f, cfrom);
+		while (++counter < len_f)
+			rrx(f, cfrom);
 	if (cto == 'b')
 		opp = 0;
 	while (len_f > 0 || len_t > 0)
@@ -108,9 +108,9 @@ void	fold_0(t_list **a, t_list **b, int folds)
 	counter = -1;
 	lens[0] = 4;
 	lens[1] = 4;
-	while (++counter < (int)(len_l / (8)) + 1)
+	while (++counter < (int)(len_l / 8) + 1)
 	{
-		if (counter == (int)(len_l / (8)))
+		if (counter == (int)(len_l / 8))
 		{
 			remainder = len_l % 8;
 			lens[0] = round_up(remainder / 2.0);
@@ -135,6 +135,7 @@ void	fold_0(t_list **a, t_list **b, int folds)
 	else 
 		while (remainder-- > 8)
 			rrx(b, 'b');
+	//return (counter);
 }
 
 void	last_fold(t_list **a, t_list **b, int current_fold)
@@ -178,7 +179,10 @@ void	order_n(t_list **a, t_list **b, int folds)
 	int	lens[2];
 
 	len_l = len_list(*a) + len_list(*b);
+	//print_lists(*a, *b);
 	fold_0(a, b, folds);
+	//printf("After fold 0:\n");
+	//print_lists(*a, *b);
 	current_fold = 0;
 	while (++current_fold <= folds - 1)
 	{
@@ -206,7 +210,11 @@ void	order_n(t_list **a, t_list **b, int folds)
 				insert_middle(b, a, lens, 'a');
 			}
 		}
+		//printf("After fold %d:\n", current_fold);
+		//print_lists(*a, *b);
 	}
 	if (folds > 0)
 		last_fold(a, b, folds);
+	// printf("After last:\n");
+	// print_lists(*a, *b);
 }

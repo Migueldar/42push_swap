@@ -2,7 +2,7 @@
 push_swap
 *a.out* 
 *.DS_Store*
-copiasSeguridad 
 .vscode
 log
 checker
+average.c

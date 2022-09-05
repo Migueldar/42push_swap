@@ -1,0 +1,11 @@
+3: 3n\ +\ \frac{139}{36}\cdot\frac{n}{6}\ +\frac{\left(6\cdot2^{x}+n\right)}{2}\cdot\left(\frac{n}{6\cdot2^{x}}\right)\ +\ \frac{3nx}{2}
+4: 3n\ +\ \frac{5120}{576}\cdot\frac{n}{8}\ +\frac{\left(8\cdot2^{x}+n\right)}{2}\cdot\left(\frac{n}{8\cdot2^{x}}\right)\ +\ \frac{3nx}{2}
+der: x=\ \frac{\ln\left(\frac{\ln\left(2\right)\cdot n}{3}\right)-3\ln\left(2\right)}{\ln\left(2\right)}
+
+theorical:	765 5534
+real:		771 5552
+
+unimplemented:
+	- letting itself decide which route to take when moves dont match in executer stage (5 moves)
+	- making it so the first introduction in every fold doesnt have to reverse rotate (56 moves)
+	- dont rotate and reverse rotate at the end of fold 0 (8 moves)
