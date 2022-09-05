@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 18:52:12 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/08/22 03:57:52 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/09/05 21:13:00 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void		push_half(t_list **a, t_list **b);
 
 //EXECUTER
 void		executer(t_list **a, t_list **b, int lens[2], int opp);
+void		move_x(t_list **a, t_list **b, char *how_to_ab[2], int list);
 
 //INSERTER
 void		inserter(t_list **a, t_list **b);

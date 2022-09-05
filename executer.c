@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:39:18 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/08/22 00:11:46 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/09/05 20:11:52 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,57 +108,33 @@ static char	*how_to(t_list *list, int len, int opp)
 	l[1] = list->next->content;
 	l[2] = list->next->next->content;
 	l[3] = list->next->next->next->content;
-	return  (how_to_4_a(l, opp));
+	return (how_to_4_a(l, opp));
 }
 
 void	executer(t_list **a, t_list **b, int lens[2], int opp)
 {
-	char	*how_to_a;
-	char	*how_to_b;
+	char	*how_to_ab[2];
 	char	*copy1;
 	char	*copy2;
 
-	how_to_a = how_to(*a, lens[0], opp);
-	how_to_b = how_to(*b, lens[1], opp);
-	copy1 = how_to_a;
-	copy2 = how_to_b;
-	// printf("a: %s, b: %s\n", how_to_a, how_to_b);
+	how_to_ab[0] = how_to(*a, lens[0], opp);
+	how_to_ab[1] = how_to(*b, lens[1], opp);
+	copy1 = how_to_ab[0];
+	copy2 = how_to_ab[1];
+	// printf("a: %s, b: %s\n", how_to_ab[0], how_to_ab[1]);
 	// fflush(NULL);
-	while (*how_to_a || *how_to_b)
+	while (*how_to_ab[0] || *how_to_ab[1])
 	{
-		if (*how_to_a == *how_to_b)
-		{
-			if (*how_to_a == 's')
-				ss(*a, *b);
-			else if (*how_to_a == 'r')
-				rr(a, b);
-			else if (*how_to_a == '4')
-				rrr(a, b);
-			how_to_a++;
-			how_to_b++;
-		}
+		if (*how_to_ab[0] == *how_to_ab[1])
+			move_x(a, b, how_to_ab, 2);
 		else
 		{
-			if (ft_strlen(how_to_a) > ft_strlen(how_to_b) || (ft_strlen(how_to_a) == ft_strlen(how_to_b) && *how_to_a == 's'))
-			{
-				if (*how_to_a == 's')
-					s(*a, 'a');
-				else if (*how_to_a == 'r')
-					r(a, 'a');
-				else if (*how_to_a == '4')
-					rrx(a, 'a');
-				how_to_a++;
-			}
+			if (ft_strlen(how_to_ab[0]) > ft_strlen(how_to_ab[1])
+				|| (ft_strlen(how_to_ab[0]) == ft_strlen(how_to_ab[1])
+					&& *how_to_ab[0] == 's'))
+				move_x(a, b, how_to_ab, 0);
 			else
-			{
-				if (*how_to_b == 's')
-					s(*b, 'b');
-				else if (*how_to_b == 'r')
-					r(b, 'b');
-				else if (*how_to_b == '4')
-					rrx(b, 'b');
-				how_to_b++;
-			}	
+				move_x(a, b, how_to_ab, 1);
 		}
 	}
 	// printf("exec:\n");
