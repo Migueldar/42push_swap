@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 23:21:42 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/09/06 03:27:10 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/09/06 06:04:38 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -169,14 +169,20 @@ void	last_fold(t_list **a, t_list **b, int current_fold, int last)
 				lens[0] = remainder;
 				lens[1] = 0;
 			}
+			// printf("last: %d a: %d b: %d \n", last, lens[0], lens[1]);
+			// fflush(NULL);
 			if (last == 0)
 			{
-				if (lens[1] != 0 && lens[1] != (8 * ft_pow(2, current_fold)))
+				if (lens[0] == (4 * ft_pow(2, current_fold)))
 					swap(lens);
 			}
-			else
-				if (lens[0] != 0 && lens[0] != (8 * ft_pow(2, current_fold)))
+			else 
+			{
+				if (lens[1] == 0)
 					swap(lens);
+			}
+			//printf("a: %d b: %d \n", lens[0], lens[1]);
+			//fflush(NULL);
 		}
 		insert_last(a, b, lens, 'b');
 		// printf("After iter: %d last\n", counter);
@@ -232,19 +238,22 @@ void	order_n(t_list **a, t_list **b, int folds)
 			}
 			if (last == 0)
 			{
-				if (lens[1] != 0 && lens[1] != (8 * ft_pow(2, current_fold)))
+				if (lens[0] == 4 * ft_pow(2, current_fold))
 					swap(lens);
 				insert_middle(a, b, lens, 'b', 1);
 			}
 			else
 			{
-				if (lens[0] != 0 && lens[0] != (8 * ft_pow(2, current_fold)))
+				if (lens[1] == 0)
 					swap(lens);
+				swap(lens);
 				insert_middle(b, a, lens, 'a', 1);
 			}
 			// printf("After iter: %d  fold: %d:\n", counter, current_fold);
 			// print_lists(*a, *b);
 		}
+		//printf("a: %d b: %d \n", lens[0], lens[1]);
+		//fflush(NULL);
 		if (last == 0)
 			last = 1;
 		else 
@@ -253,7 +262,7 @@ void	order_n(t_list **a, t_list **b, int folds)
 		// print_lists(*a, *b);
 	}
 	if (folds > 0)
-		last_fold(a, b, folds, last);
+		last_fold(a, b, current_fold, last);
 	// printf("After last:\n");
 	// print_lists(*a, *b);
 }
