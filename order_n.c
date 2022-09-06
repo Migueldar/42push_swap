@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 23:21:42 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/09/06 06:04:38 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/09/06 06:54:40 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,7 +244,7 @@ void	order_n(t_list **a, t_list **b, int folds)
 			}
 			else
 			{
-				if (lens[1] == 0)
+				if (lens[1] == 0 && lens[0] != 4 * ft_pow(2, current_fold))
 					swap(lens);
 				swap(lens);
 				insert_middle(b, a, lens, 'a', 1);
@@ -252,8 +252,11 @@ void	order_n(t_list **a, t_list **b, int folds)
 			// printf("After iter: %d  fold: %d:\n", counter, current_fold);
 			// print_lists(*a, *b);
 		}
-		//printf("a: %d b: %d \n", lens[0], lens[1]);
-		//fflush(NULL);
+		// if (last == 0)
+		// 	printf("a: %d b: %d \n", lens[0], lens[1]);
+		// else 
+		// 	printf("a: %d b: %d \n", lens[1], lens[0]);
+		// fflush(NULL);
 		if (last == 0)
 			last = 1;
 		else 

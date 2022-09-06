@@ -6,28 +6,25 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 23:15:19 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/09/05 21:43:47 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/09/06 07:24:33 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	leaks()
-{
-	system("leaks push_swap");
-}
+// void	leaks()
+// {
+// 	system("leaks push_swap");
+// }
 
 //takes number of elements in a list, returns number of folds
 //that should be performed to get best optimization
 //got the number calculating the derivative
-int	n_of_folds(int n) 
+int	n_of_folds(int n)
 {
-	return (aprox_or_zero((ft_ln((ft_ln(2) * n) / 3) - 3 * ft_ln(2)) / ft_ln(2)));
+	return (aprox_or_zero((ft_ln((ft_ln(2) * n) / 20)) / ft_ln(2)));
 }
 
-//TODO
-//hardcore 5
-//maybe force 100 to 1 fold(6 less moves)
 int	main(int argc, char **argv)
 {
 	//atexit(leaks);
@@ -48,11 +45,10 @@ int	main(int argc, char **argv)
 		hardcode_3(&a, len);
 	else if (len <= 6)
 		hardcode_5(&a, &b);
-	else 
+	else
 	{
 		push_half(&a, &b);
 		order_n(&a, &b, folds);
-		//print_lists(a, b);
 		inserter(&a, &b);
 	}
 	free_list(a);

@@ -1,5 +1,5 @@
 3: 3n\ +\ \frac{139}{36}\cdot\frac{n}{6}\ +\frac{\left(6\cdot2^{x}+n\right)}{2}\cdot\left(\frac{n}{6\cdot2^{x}}\right)\ +\ \frac{3nx}{2}
-4: 3n\ +\ \frac{5120}{576}\cdot\frac{n}{8}\ +\frac{\left(8\cdot2^{x}+n\right)}{2}\cdot\left(\frac{n}{8\cdot2^{x}}\right)\ +\ \frac{3nx}{2}
+4: 3n\ +\ \frac{5120}{576}\cdot\frac{n}{8}\ +\frac{\left(8\cdot2^{x}+n\right)}{2}\cdot\left(\frac{n}{8\cdot2^{x}}\right)\ +\ \frac{5nx}{4}
 der: x=\ \frac{\ln\left(\frac{\ln\left(2\right)\cdot n}{3}\right)-3\ln\left(2\right)}{\ln\left(2\right)}
 
 theorical:	761 5530
