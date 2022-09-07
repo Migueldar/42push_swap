@@ -6,16 +6,11 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 23:15:19 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/09/06 07:24:33 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/09/07 04:45:50 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// void	leaks()
-// {
-// 	system("leaks push_swap");
-// }
 
 //takes number of elements in a list, returns number of folds
 //that should be performed to get best optimization
@@ -27,7 +22,6 @@ int	n_of_folds(int n)
 
 int	main(int argc, char **argv)
 {
-	//atexit(leaks);
 	t_list	*a;
 	t_list	*b;
 	int		folds;

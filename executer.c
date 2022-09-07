@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:39:18 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/09/05 20:11:52 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/09/06 07:30:30 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,8 +121,6 @@ void	executer(t_list **a, t_list **b, int lens[2], int opp)
 	how_to_ab[1] = how_to(*b, lens[1], opp);
 	copy1 = how_to_ab[0];
 	copy2 = how_to_ab[1];
-	// printf("a: %s, b: %s\n", how_to_ab[0], how_to_ab[1]);
-	// fflush(NULL);
 	while (*how_to_ab[0] || *how_to_ab[1])
 	{
 		if (*how_to_ab[0] == *how_to_ab[1])
@@ -137,8 +135,6 @@ void	executer(t_list **a, t_list **b, int lens[2], int opp)
 				move_x(a, b, how_to_ab, 1);
 		}
 	}
-	// printf("exec:\n");
-	// print_lists(*a, *b);
 	free(copy1);
 	free(copy2);
 }

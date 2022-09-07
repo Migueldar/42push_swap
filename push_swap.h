@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/10 18:52:12 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/09/05 21:13:00 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/09/07 04:42:47 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,13 @@ void		inserter(t_list **a, t_list **b);
 //HARDCODE
 void		hardcode_3(t_list **a, int len);
 void		hardcode_5(t_list **a, t_list **b);
+
+//INSERTER MOVE, FOLD_0
+void		insert_start(t_list **f, t_list **t, int lens[2], char cto);
+void		insert_mid(t_list **f, t_list **t, int lens[2], char cto);
+void		insert_last(t_list **f, t_list **t, int lens[2], char cto);
+void		rev_r(t_list **f, int len_f, char cfrom);
+int			fold_0(t_list **a, t_list **b, int folds);
 
 //UTILS
 void		free_list(t_list *first);

@@ -6,266 +6,130 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 23:21:42 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/09/06 06:54:40 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/09/07 04:42:20 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	insert_start(t_list **f, t_list **t, int lens[2], char cto)
+void	middle_fold_normie(t_list **a, t_list **b, int current_fold,
+	int counter_n_last[2])
 {
-	int len_f;
-	int len_t;
-	int	opp;
-
-	len_f = lens[0];
-	len_t = lens[1];
-	opp = 0;
-	if (cto == 'b')
-		opp = 1;
-	while (len_f > 0 || len_t > 0)
-	{
-		if ((len_f > 0 && op((*f)->content, (*t)->content, opp)) || len_t <= 0)
-		{
-			p(f, t, cto);
-			len_f--;
-		}
-		else
-			len_t--;
-		r(t, cto);
-	}
-}
-
-void	insert_middle(t_list **f, t_list **t, int lens[2], char cto, int rotate)
-{
-	int len_f;
-	int len_t;
-	int	opp;
-	int	counter = -1;
-	char cfrom = 'a';
-
-	if (cto == 'a')
-		cfrom = 'b';
-	len_f = lens[0];
-	len_t = lens[1];
-	opp = 1;
-	if (rotate)
-		while (++counter < len_f)
-			rrx(f, cfrom);
-	if (cto == 'b')
-		opp = 0;
-	while (len_f > 0 || len_t > 0)
-	{
-		if ((len_f > 0 && op((*f)->content, last_elem(*t), opp)) || len_t <= 0)
-		{
-			p(f, t, cto);
-			len_f--;
-		}
-		else
-		{
-			rrx(t, cto);
-			len_t--;
-		}
-	}
-}
-
-void	insert_last(t_list **f, t_list **t, int lens[2], char cto)
-{
-	int len_f;
-	int len_t;
-	int	opp;
-	char cfrom = 'a';
-
-	if (cto == 'a')
-		cfrom = 'b';
-	len_f = lens[0];
-	len_t = lens[1];
-	opp = 1;
-	if (cto == 'b')
-		opp = 0;
-	while (len_f > 0 || len_t > 0)
-	{
-		if ((len_f > 0 && op((*f)->content, last_elem(*t), opp)) || len_t <= 0)
-		{
-			p(f, t, cto);
-			len_f--;
-		}
-		else
-		{
-			rrx(t, cto);
-			len_t--;
-		}
-	}
-}
-
-int	fold_0(t_list **a, t_list **b, int folds)
-{
-	int	counter;
-	int	lens[2];
 	int	len_l;
-	int remainder;
-	int last;
+	int	l[2];
+	int	remainder;
 
 	len_l = len_list(*a) + len_list(*b);
-	counter = -1;
-	lens[0] = 4;
-	lens[1] = 4;
-	while (++counter < (int)(len_l / 8) + 1)
+	l[0] = 4 * ft_pow(2, current_fold);
+	l[1] = 4 * ft_pow(2, current_fold);
+	if (counter_n_last[0] == (int)(len_l / (8 * ft_pow(2, current_fold))))
 	{
-		if (counter == (int)(len_l / 8))
-		{
-			remainder = len_l % 8;
-			lens[0] = round_up(remainder / 2.0);
-			lens[1] = remainder / 2;
-		}
-		if (counter % 2 == 1 || folds == 0)
-		{
-			executer(a, b, lens, 0);
-			insert_start(a, b, lens, 'b');
-			last = 1;
-		}
+		remainder = len_l % (int)(8 * ft_pow(2, current_fold));
+		l[1] = 0;
+		if (remainder > (4 * ft_pow(2, current_fold)))
+			l[1] = remainder - 4 * ft_pow(2, current_fold);
+		else
+			l[0] = remainder;
+	}
+	if (counter_n_last[1] == 0)
+	{
+		if (l[0] == 4 * ft_pow(2, current_fold))
+			swap(l);
+		return ((void) 42, rev_r(a, l[0], 'a'), insert_mid(a, b, l, 'b'));
+	}
+	if (l[1] == 0 && l[0] != 4 * ft_pow(2, current_fold))
+		swap(l);
+	return ((void) 42, swap(l), rev_r(b, l[0], 'b'), insert_mid(b, a, l, 'a'));
+}
+
+int	middle_fold(t_list **a, t_list **b, int current_fold, int last)
+{
+	int	len_l;
+	int	lens[2];
+	int	counter_n_last[2];
+
+	len_l = len_list(*a) + len_list(*b);
+	counter_n_last[0] = -1;
+	counter_n_last[1] = last;
+	lens[0] = 4 * ft_pow(2, current_fold);
+	lens[1] = 4 * ft_pow(2, current_fold);
+	while (++(counter_n_last[0])
+		< aprox_or_zero(len_l / (16 * ft_pow(2, current_fold))))
+	{
+		if (last == 0)
+			insert_mid(b, a, lens, 'a');
+		else
+			insert_mid(a, b, lens, 'b');
+	}
+	counter_n_last[0]--;
+	while (++(counter_n_last[0])
+		<= (int)(len_l / (8 * ft_pow(2, current_fold))))
+		middle_fold_normie(a, b, current_fold, counter_n_last);
+	if (last == 0)
+		return (1);
+	return (0);
+}
+
+void	last_fold_normie(t_list **a, t_list **b, int current_fold,
+	int counter_n_last[2])
+{
+	int	lens[2];
+	int	len_l;
+	int	remainder;
+
+	len_l = len_list(*a) + len_list(*b);
+	lens[0] = 4 * ft_pow(2, current_fold);
+	lens[1] = 4 * ft_pow(2, current_fold);
+	if (counter_n_last[0] == (int)(len_l / (8 * ft_pow(2, current_fold))))
+	{
+		remainder = len_l % (int)(8 * ft_pow(2, current_fold));
+		if (remainder > (4 * ft_pow(2, current_fold)))
+			lens[1] = remainder - 4 * ft_pow(2, current_fold);
 		else
 		{
-			executer(a, b, lens, 1);
-			swap(lens);
-			insert_start(b, a, lens, 'a');
-			last = 0;
+			lens[0] = remainder;
+			lens[1] = 0;
 		}
+		if (counter_n_last[1] == 0)
+			if (lens[0] == (4 * ft_pow(2, current_fold)))
+				swap(lens);
+		if (counter_n_last[1] == 1)
+			if (lens[1] == 0 && lens[0] != 4 * ft_pow(2, current_fold))
+				swap(lens);
 	}
-	remainder = len_l % 16;
-	if (remainder < 8)
-		while (remainder-- > 0)
-			rrx(a, 'a');
-	else 
-		while (remainder-- > 8)
-			rrx(b, 'b');
-	return (last);
+	insert_last(a, b, lens, 'b');
 }
 
 void	last_fold(t_list **a, t_list **b, int current_fold, int last)
 {
-	int	counter;
-	int	lens[2];
 	int	len_l;
-	int remainder;
+	int	remainder;
+	int	counter_n_last[2];
 
 	len_l = len_list(*a) + len_list(*b);
 	remainder = len_l % (int)(8 * ft_pow(2, current_fold));
 	if ((remainder < (4 * ft_pow(2, current_fold))) && !last)
 		while (remainder-- > 0)
 			r(a, 'a');
-	counter = -1;
-	lens[0] = 4 * ft_pow(2, current_fold);
-	lens[1] = 4 * ft_pow(2, current_fold);
-	while (++counter <= (int)(len_l / (8 * ft_pow(2, current_fold))))
-	{
-		if (counter == (int)(len_l / (8 * ft_pow(2, current_fold))))
-		{
-			remainder = len_l % (int)(8 * ft_pow(2, current_fold));
-			if (remainder > (4 * ft_pow(2, current_fold)))
-				lens[1] = remainder - 4 * ft_pow(2, current_fold);
-			else
-			{
-				lens[0] = remainder;
-				lens[1] = 0;
-			}
-			// printf("last: %d a: %d b: %d \n", last, lens[0], lens[1]);
-			// fflush(NULL);
-			if (last == 0)
-			{
-				if (lens[0] == (4 * ft_pow(2, current_fold)))
-					swap(lens);
-			}
-			else 
-			{
-				if (lens[1] == 0)
-					swap(lens);
-			}
-			//printf("a: %d b: %d \n", lens[0], lens[1]);
-			//fflush(NULL);
-		}
-		insert_last(a, b, lens, 'b');
-		// printf("After iter: %d last\n", counter);
-		// print_lists(*a, *b);
-	}
+	else if (!last)
+		while (remainder-- > (4 * ft_pow(2, current_fold)))
+			r(a, 'a');
+	counter_n_last[0] = -1;
+	counter_n_last[1] = last;
+	while (++(counter_n_last[0])
+		<= (int)(len_l / (8 * ft_pow(2, current_fold))))
+		last_fold_normie(a, b, current_fold, counter_n_last);
 }
 
 void	order_n(t_list **a, t_list **b, int folds)
 {
-	int	counter;
-	int	len_l;
 	int	current_fold;
-	int	remainder;
-	int	lens[2];
-	//0 a, 1 b
-	int last;
+	int	last;
 
-	len_l = len_list(*a) + len_list(*b);
-	//print_lists(*a, *b);
 	last = fold_0(a, b, folds);
-	// printf("After fold 0:\n");
-	// print_lists(*a, *b);
 	current_fold = 0;
 	while (++current_fold <= folds - 1)
-	{
-		counter = -1;
-		lens[0] = 4 * ft_pow(2, current_fold);
-		lens[1] = 4 * ft_pow(2, current_fold);
-		while (++counter < aprox_or_zero(len_l / (16 * ft_pow(2, current_fold))))
-		{
-			if (last == 0)
-				insert_middle(b, a, lens, 'a', 0);
-			else 
-				insert_middle(a, b, lens, 'b', 0);
-			// printf("After iter: %d  fold: %d:\n", counter, current_fold);
-			// print_lists(*a, *b);
-		}
-		// printf("After half %d:\n", current_fold);
-		// print_lists(*a, *b);
-		counter--;
-		while (++counter <= (int)(len_l / (8 * ft_pow(2, current_fold))))
-		{
-			if (counter == (int)(len_l / (8 * ft_pow(2, current_fold))))
-			{
-				remainder = len_l % (int)(8 * ft_pow(2, current_fold));
-				if (remainder > (4 * ft_pow(2, current_fold)))
-					lens[1] = remainder - 4 * ft_pow(2, current_fold);
-				else
-				{
-					lens[0] = remainder;
-					lens[1] = 0;
-				}
-			}
-			if (last == 0)
-			{
-				if (lens[0] == 4 * ft_pow(2, current_fold))
-					swap(lens);
-				insert_middle(a, b, lens, 'b', 1);
-			}
-			else
-			{
-				if (lens[1] == 0 && lens[0] != 4 * ft_pow(2, current_fold))
-					swap(lens);
-				swap(lens);
-				insert_middle(b, a, lens, 'a', 1);
-			}
-			// printf("After iter: %d  fold: %d:\n", counter, current_fold);
-			// print_lists(*a, *b);
-		}
-		// if (last == 0)
-		// 	printf("a: %d b: %d \n", lens[0], lens[1]);
-		// else 
-		// 	printf("a: %d b: %d \n", lens[1], lens[0]);
-		// fflush(NULL);
-		if (last == 0)
-			last = 1;
-		else 
-			last = 0;
-		// printf("After fold %d:\n", current_fold);
-		// print_lists(*a, *b);
-	}
+		last = middle_fold(a, b, current_fold, last);
 	if (folds > 0)
 		last_fold(a, b, current_fold, last);
-	// printf("After last:\n");
-	// print_lists(*a, *b);
 }

@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/21 01:10:09 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/08/22 04:01:57 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/09/06 07:29:55 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	inserter(t_list **a, t_list **b)
 			p(b, a, 'a');
 		else
 			rrx(a, 'a');
-		//print_lists(*a, *b);
 	}
 	while (!ordered_list(*a))
 		rrx(a, 'a');
