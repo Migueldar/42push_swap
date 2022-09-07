@@ -6,7 +6,7 @@
 /*   By: mde-arpe <mde-arpe@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/10 23:21:42 by mde-arpe          #+#    #+#             */
-/*   Updated: 2022/09/07 04:42:20 by mde-arpe         ###   ########.fr       */
+/*   Updated: 2022/09/07 22:42:21 by mde-arpe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ void	middle_fold_normie(t_list **a, t_list **b, int current_fold,
 	{
 		if (l[0] == 4 * ft_pow(2, current_fold))
 			swap(l);
-		return ((void) 42, rev_r(a, l[0], 'a'), insert_mid(a, b, l, 'b'));
+		return (rev_r(a, l[0], 'a'), insert_mid(a, b, l, 'b'));
 	}
 	if (l[1] == 0 && l[0] != 4 * ft_pow(2, current_fold))
 		swap(l);
-	return ((void) 42, swap(l), rev_r(b, l[0], 'b'), insert_mid(b, a, l, 'a'));
+	return (swap(l), rev_r(b, l[0], 'b'), insert_mid(b, a, l, 'a'));
 }
 
 int	middle_fold(t_list **a, t_list **b, int current_fold, int last)
