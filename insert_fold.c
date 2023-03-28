@@ -41,12 +41,10 @@ void	insert_mid(t_list **f, t_list **t, int lens[2], char cto)
 	int	len_f;
 	int	len_t;
 	int	opp;
-	int	counter;
 
 	len_f = lens[0];
 	len_t = lens[1];
 	opp = 1;
-	counter = -1;
 	if (cto == 'b')
 		opp = 0;
 	while (len_f > 0 || len_t > 0)
